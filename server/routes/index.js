@@ -5,9 +5,12 @@ var express = require('express');
 var router = express.Router();
 var path = require('path');
 var pg = require('pg');
+var admin = require('./admin');
 
+//"?ssl=true"
+var connectionString = process.env.DATABASE_URL || 'postgres://localhost:5432/toastoffice';
 
-var connectionString = process.env.DATABASE_URL + "?ssl=true" || 'postgres://localhost:5432/toastoffice';
+router.use('/admin', admin);
 
 router.route('/submit')
     .get(function(req, res){
@@ -64,7 +67,7 @@ router.route('/submit')
 
 
 router.get('/*', function(req, res){
-    var file = req.params[0] || "/views/index.html";
+    var file = req.params[0] || "/views/admin.html";
     res.sendFile(path.join(__dirname, "../public", file))
 });
 
