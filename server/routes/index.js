@@ -6,6 +6,7 @@ var router = express.Router();
 var path = require('path');
 var pg = require('pg');
 
+
 var connectionString = process.env.DATABASE_URL + "?ssl=true" || 'postgres://localhost:5432/toastoffice';
 
 router.route('/submit')
