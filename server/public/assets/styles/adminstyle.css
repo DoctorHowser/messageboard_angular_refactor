@@ -3,6 +3,6 @@ body {
 }
 
 #messageBoard {
-    height: 350px;
+    height: 450px;
     overflow: auto;
 }
