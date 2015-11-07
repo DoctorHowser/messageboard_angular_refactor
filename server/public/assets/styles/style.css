@@ -1,0 +1,4 @@
+#messageBoard {
+    height: 350px;
+    overflow: auto;
+}
