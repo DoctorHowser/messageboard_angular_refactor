@@ -8,7 +8,7 @@ var pg = require('pg');
 var admin = require('./admin');
 
 //+ "?ssl=true"
-var connectionString = process.env.DATABASE_URL + "?ssl=true" || 'postgres://localhost:5432/toastoffice';
+var connectionString = process.env.DATABASE_URL || 'postgres://localhost:5432/toastoffice';
 
 router.use('/admin', admin);
 
@@ -17,7 +17,7 @@ router.route('/submit')
         var results = [];
 
         pg.connect(connectionString, function(err, client, done){
-            var query = client.query("SELECT * FROM posts ORDER BY id DESC");
+            var query = client.query('SELECT * FROM posts ORDER BY id DESC');
 
 
             query.on('row', function(row){

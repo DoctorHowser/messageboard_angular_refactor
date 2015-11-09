@@ -1,31 +1,56 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" ng-app="myApp">
 <head>
     <meta charset="UTF-8">
     <title>Toastoffice!</title>
     <link rel="stylesheet" type="text/css" href="vendors/bootstrap.min.css">
-    <link rel="stylesheet" type="text/css" href="assets/styles/adminstyle.css">
-    <script type="text/javascript" src="vendors/jquery.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="assets/styles/style.css">
+    <script type="text/javascript" src="vendors/angular.min.js"></script>
     <script type="text/javascript" src="assets/scripts/adminapp.js"></script>
 </head>
 <body>
-    <div class="container">
-        <div class="jumbotron text-center">
-            <h1>ADMIN</h1>
-        </div>
-        <div id="messageBoard" class="col-md-6"></div>
-    <form id="postMaker" class="col-md-6">
-        <div class="form-group well">
-            <label for="name">Name</label>
-            <input class="form-control" type="text" id="name" name="name" placeholder="Enter your name">
-    </div>
-        <div class="form-group well">
-            <label for="message">Message</label>
-            <textarea class="form-control" id="message" name="message" rows="10" cols="30" placeholder="Write your message"></textarea>
-        </div>
-        <button id="makePost" class="btn btn-info">Make a Post!</button>
+<div class="container" ng-controller="MessageController">
 
-    </form>
+    <div class="jumbotron text-center">
+        <h1>Hello! Welcome to the messageboard!</h1>
     </div>
+
+    <div   id="messageBoard" class="col-md-6">
+        <div ng-repeat="posts in postArray" class="well">
+            <p>{{posts.name}}</p>
+            <p>{{posts.post}}</p>
+            <p>{{posts.id}}</p>
+            <button class="btn btn-danger" ng-click="deletePost(posts)">DELETE</button>
+
+        </div>
+    </div>
+
+    <div class="col-md-6">
+
+        <form id="postMaker">
+
+            <div class="form-group well">
+
+                <label for="name">Name</label>
+
+                <input ng-model="post.name" class="form-control" type="text" id="name" name="name" placeholder="Enter your name">
+
+            </div>
+
+            <div class="form-group well">
+                <label for="message">Message</label>
+
+                <textarea ng-model="post.message" class="form-control" id="message" name="message" rows="10" cols="30" placeholder="Write your message"></textarea>
+
+            </div>
+
+        </form>
+        <button id="makePost" class="btn btn-info" ng-click="clickSubmit(post)">Make a Post!</button>
+    </div>
+
+
+
+
+</div>
 </body>
 </html>

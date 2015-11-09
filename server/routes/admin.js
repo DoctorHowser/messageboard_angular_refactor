@@ -5,11 +5,17 @@ var express = require('express');
 var adminRouter = express.Router();
 var path = require('path');
 var pg = require('pg');
+var bodyParser = require('body-parser');
+
+adminRouter.use(bodyParser.json());
+adminRouter.use(bodyParser.urlencoded({expanded: true}));
+
 
 var connectionString = process.env.DATABASE_URL || 'postgres://localhost:5432/toastoffice';
 
 
-adminRouter.delete('/', function(req, res){
+adminRouter.post('/', function(req, res){
+    console.log(req);
     var id = req.body.id;
     pg.connect(connectionString, function(err, client){
         if(err){
